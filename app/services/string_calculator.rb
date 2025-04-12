@@ -16,6 +16,6 @@ class StringCalculator
       raise ArgumentError, "negative numbers not allowed: #{negatives.join(', ')}"
     end
 
-    numbers.sum
+    numbers.reject { |n| n > 1000 }.sum
   end
 end

@@ -48,5 +48,9 @@ RSpec.describe StringCalculator do
       expect { described_class.new.add("//;\n1;-2;4") }
         .to raise_error(ArgumentError, "negative numbers not allowed: -2")
     end
+
+    it 'ignore numbers greater than 1000' do
+      expect(described_class.new.add("7,1001")).to eq(7)
+    end
   end
 end
