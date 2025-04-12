@@ -33,5 +33,20 @@ RSpec.describe StringCalculator do
     it 'handling different delimiter like *' do
       expect(described_class.new.add("//*\n3*4")).to eq(7)
     end
+
+    it 'raises an exception for negative numbers' do
+      expect { described_class.new.add("1,-2,3") }
+        .to raise_error(ArgumentError, "negative numbers not allowed: -2")
+    end
+    
+    it 'raises an exception for multiple negative numbers' do
+      expect { described_class.new.add("-1,-2,3") }
+        .to raise_error(ArgumentError, "negative numbers not allowed: -1, -2")
+    end
+
+    it 'raises an exception for negative numbers with different delimiter' do
+      expect { described_class.new.add("//;\n1;-2;4") }
+        .to raise_error(ArgumentError, "negative numbers not allowed: -2")
+    end
   end
 end
