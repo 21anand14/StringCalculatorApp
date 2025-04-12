@@ -25,5 +25,13 @@ RSpec.describe StringCalculator do
     it 'handles multiple newlines between numbers' do
       expect(described_class.new.add("2\n2\n3")).to eq(7)
     end
+
+    it 'handling different delimiter like ;' do
+      expect(described_class.new.add("//;\n1;2;4")).to eq(7)
+    end
+    
+    it 'handling different delimiter like *' do
+      expect(described_class.new.add("//*\n3*4")).to eq(7)
+    end
   end
 end
