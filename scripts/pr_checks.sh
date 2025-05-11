@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+# Ensure we have the latest branches from the remote
+echo "🔄 Fetching latest changes from origin..."
+git fetch origin
+
 echo "🔍 Detecting changed Ruby files..."
 changed_files=$(git diff --name-only origin/main...HEAD -- '*.rb')
 
