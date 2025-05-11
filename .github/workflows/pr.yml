@@ -16,12 +16,13 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'  # match your project's Ruby version
+          ruby-version: '3.2.2'  # match your project's Ruby version
 
       - name: Install dependencies
         run: |
           gem install bundler
-          bundle install
+          bundle config set path 'vendor/bundle'
+          bundle install --with development --jobs 4 --retry 3
 
       - name: Run PR checks
         run: ./scripts/pr_checks.sh
