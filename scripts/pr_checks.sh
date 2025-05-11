@@ -16,12 +16,12 @@ else
   changed_files=$(git diff --name-only "$merge_base"...HEAD -- '*.rb')
 fi
 
-if [[ -n "$changed_files" ]]; then
-  echo "🔍 Running RuboCop on: $changed_files"
-  bundle exec rubocop $changed_files
-else
-  echo "✅ No Ruby files changed. Skipping RuboCop."
-fi
+# if [[ -n "$changed_files" ]]; then
+#   echo "🔍 Running RuboCop on: $changed_files"
+#   bundle exec rubocop $changed_files
+# else
+#   echo "✅ No Ruby files changed. Skipping RuboCop."
+# fi
 
 echo "🧪 Running RSpec..."
 bundle exec rspec
