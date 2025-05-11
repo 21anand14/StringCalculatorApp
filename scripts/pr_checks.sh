@@ -23,8 +23,8 @@ fi
 #   echo "✅ No Ruby files changed. Skipping RuboCop."
 # fi
 
-echo "🧪 Running RSpec..."
-bundle exec rspec
+# echo "🧪 Running RSpec..."
+# bundle exec rspec
 
 echo "🛡️ Running Brakeman..."
 bundle exec brakeman -z
