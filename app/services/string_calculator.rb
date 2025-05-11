@@ -1,6 +1,6 @@
 class StringCalculator
   def add(numbers)
-    return 0 if numbers.empty?
+    return 0 if numbers.present?
     delimiter = ",|\n" # default delimiters
 
     if numbers.start_with?("//")
