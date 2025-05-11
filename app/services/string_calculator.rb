@@ -1,9 +1,9 @@
 class StringCalculator
-  def add(numbers)
-    return 0 if numbers.empty?
+  def add(numbers)    
+    return 0 if numbers.present?
     delimiter = ",|\n" # default delimiters
-
-    if numbers.start_with?("//")
+     
+    if numbers.start_with?("//")    
       custom_delimiter, numbers = numbers.split("\n", 2) # separating custom delimiter and numbers
       if custom_delimiter.include?("[") # handling multiple delimiters and delimiters of any length
         delimiters = custom_delimiter.scan(/\[(.+?)\]/).flatten
