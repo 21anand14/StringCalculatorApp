@@ -1,12 +1,20 @@
 #!/bin/bash
 set -e
 
-# Ensure we have the latest branches from the remote
 echo "🔄 Fetching latest changes from origin..."
 git fetch origin
 
 echo "🔍 Detecting changed Ruby files..."
-changed_files=$(git diff --name-only origin/main...HEAD -- '*.rb')
+
+# Try to find the merge base between origin/main and HEAD
+merge_base=$(git merge-base origin/main HEAD || true)
+
+if [[ -z "$merge_base" ]]; then
+  echo "⚠️ No common ancestor found (probably a new branch). Checking all Ruby files instead..."
+  changed_files=$(git ls-files '*.rb')
+else
+  changed_files=$(git diff --name-only "$merge_base"...HEAD -- '*.rb')
+fi
 
 if [[ -n "$changed_files" ]]; then
   echo "🔍 Running RuboCop on: $changed_files"
